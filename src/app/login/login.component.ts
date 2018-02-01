@@ -46,7 +46,9 @@ export class LoginComponent implements OnInit {
     );
 
   }
-
+  public submit(captchaResponse: string): void {
+    console.log("captchaResponse:",captchaResponse);
+  }
   ngOnInit() {
     console.log(Md5.hashStr('blah blah blah'));
   }

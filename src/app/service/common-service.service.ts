@@ -14,7 +14,8 @@ export class CommonServiceService {
     {headers:
       { 
         'X-XSRF-TOKEN': localStorage.getItem('x_xrsf_token'), 
-        'X-FALCON-TOKEN': localStorage.getItem('x_falcon_token')
+        'X-FALCON-TOKEN': localStorage.getItem('x_falcon_token'),
+        'Access-Control-Allow-Origin': '*'
       }});
   }
 }
