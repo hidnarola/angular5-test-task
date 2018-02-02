@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonServiceService } from '../service/common-service.service';
 import { Md5 } from 'ts-md5/dist/md5';
 import { Router } from '@angular/router';
+import { error } from 'util';
 
 
 @Component({
@@ -17,11 +18,12 @@ export class LoginComponent implements OnInit {
     public router:Router
   ) { }
   public data = {};
+  public error_flag = false;
   resolved(captchaResponse: string) {
     this.data['captcha'] = captchaResponse;
     console.log(`Resolved captcha with response ${captchaResponse}`);
   }
-  onSubmit() {
+  onSubmit(captchaResponse: string) {
 
     this.data['password_md5'] = Md5.hashStr(this.data['password']);
 
@@ -42,6 +44,10 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('x_falcon_token',x_falcon_token);
         localStorage.setItem('x_xrsf_token',x_xrsf_token);
         this.router.navigate(['/details']);
+      },
+      error => {
+        this.error_flag = true;
+        grecaptcha.reset();
       }
     );
 
@@ -49,8 +55,6 @@ export class LoginComponent implements OnInit {
   public submit(captchaResponse: string): void {
     console.log("captchaResponse:",captchaResponse);
   }
-  ngOnInit() {
-    console.log(Md5.hashStr('blah blah blah'));
-  }
+  ngOnInit() {}
 
 }

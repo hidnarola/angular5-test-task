@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
+// import 'rxjs/add/operator/map';
+import { Console } from '@angular/core/src/console';
 
 @Injectable()
 export class CommonServiceService {
